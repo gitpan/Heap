@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: StrElem (to allocate a new Heap::Elem::Str value)
 @EXPORT_OK = qw( StrElem );
 
-$VERSION = '0.70';
+$VERSION = '0.71';
 
 
 # Preloaded methods go here.

@@ -2,4 +2,4 @@ Changes
 Elem.pm
 MANIFEST
 Makefile.PL
-test.pl
+t/test.t

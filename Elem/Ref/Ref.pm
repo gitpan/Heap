@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: RefElem (to allocate a new Heap::Elem::Ref value)
 @EXPORT_OK = qw( RefElem );
 
-$VERSION = '0.70';
+$VERSION = '0.71';
 
 
 # Preloaded methods go here.

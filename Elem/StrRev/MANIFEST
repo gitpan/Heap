@@ -2,4 +2,4 @@ Changes
 MANIFEST
 Makefile.PL
 StrRev.pm
-test.pl
+t/test.t

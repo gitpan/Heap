@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: NumRElem (to allocate a new Heap::Elem::NumRev value)
 @EXPORT_OK = qw( NumRElem );
 
-$VERSION = '0.70';
+$VERSION = '0.71';
 
 
 # Preloaded methods go here.

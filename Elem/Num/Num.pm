@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: NumElem (to allocate a new Heap::Elem::Num value)
 @EXPORT_OK = qw( NumElem );
 
-$VERSION = '0.70';
+$VERSION = '0.71';
 
 
 # Preloaded methods go here.

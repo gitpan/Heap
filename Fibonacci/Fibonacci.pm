@@ -12,7 +12,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.70';
+$VERSION = '0.71';
 
 
 # Preloaded methods go here.
@@ -328,12 +328,13 @@ sub elem_DESTROY {
     my $el = shift;
     my $ch;
     my $next;
+    $el->{left}->{right} = undef;
 
     while( $el ) {
 	$ch = $el->{child} and elem_DESTROY $ch;
 	$next = $el->{right};
 
-	$el->{val}->heap(undef);
+	defined $el->{val} and $el->{val}->heap(undef);
 	$el->{child} = $el->{right} = $el->{left} = $el->{p} = $el->{val}
 	    = undef;
 	$el = $next;

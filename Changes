@@ -26,3 +26,9 @@ Revision history for Perl extension Heap.
 	  extract_minimum methods to top and extract_top
 	  - prompted by Steve Lembark <lembark@wrkhors.com>
 	  - old names are still supported, but depracated
+
+0.71  Thu Jun 17 12:25:36 EDT 2004
+	- fixed a memory leak in Heap::Fibonacci
+	  - the DESTROY method did'nt traverse fully
+	- one final reference to extract_minimum in doc for Heap.pm
+	- both issues reported by Christian Plessl <plessl@tik.ee.ethz.ch>

@@ -2,4 +2,4 @@ Binomial.pm
 Changes
 MANIFEST
 Makefile.PL
-test.pl
+t/test.t

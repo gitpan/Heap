@@ -13,7 +13,7 @@ require AutoLoader;
 
 @EXPORT = ( );
 
-$VERSION = '0.70';
+$VERSION = '0.71';
 
 
 # Preloaded methods go here.

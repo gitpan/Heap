@@ -15,7 +15,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.70';
+$VERSION = '0.71';
 
 
 # Preloaded methods go here.
@@ -50,7 +50,7 @@ Heap - Perl extensions for keeping data partially sorted
       $heap->add( $elem );
   }
 
-  while( defined( $elem = $heap->extract_maximum ) ) {
+  while( defined( $elem = $heap->extract_top ) ) {
       print "Smallest is ", $elem->val, "\n";
   }
 
