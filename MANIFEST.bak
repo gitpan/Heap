@@ -9,7 +9,7 @@ Binomial/Changes
 Binomial/MANIFEST
 Binomial/Makefile
 Binomial/Makefile.PL
-Binomial/t/test.t
+Binomial/test.pl
 Changes
 Elem/Changes
 Elem/Elem.pm
@@ -58,11 +58,10 @@ Fibonacci/Fibonacci.pm
 Fibonacci/MANIFEST
 Fibonacci/Makefile
 Fibonacci/Makefile.PL
-Fibonacci/t/test.t
+Fibonacci/test.pl
 Heap.pm
 MANIFEST
 MANIFEST.bak
 Makefile
 Makefile.PL
-README
 t/test.t
