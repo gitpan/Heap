@@ -12,7 +12,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -131,32 +131,35 @@ sub add {
     heapup $h, scalar(@$h), $v;
 }
 
-# minimum($h)          usually $h->minimum
+# top($h)          usually $h->top
 #	the smallest value is returned, but it is still left on the heap
-sub minimum {
+sub top {
     my $h = shift;
     $h->[0];
 }
 
-# extract_minimum($h)          usually $h->extract_minimum
-#	the smallest value is returned after removing it fro mthe heap
-sub extract_minimum {
+*minimum = \&top;
+
+# extract_top($h)          usually $h->extract_top
+#	the smallest value is returned after removing it from the heap
+sub extract_top {
     my $h = shift;
-    my $min = $h->[0];
+    my $top = $h->[0];
     if( @$h ) {
 	# there was at least one item, must decrease the heap
-	$min->heap(undef);
+	$top->heap(undef);
 	my $last = pop(@$h);
 	if( @$h ) {
-	    # $min was not the only thing left, so re-heap the
+	    # $top was not the only thing left, so re-heap the
 	    # remainder by over-writing position zero (where
-	    # $min was) using the value popped from the end
+	    # $top was) using the value popped from the end
 	    heapdown $h, 0, $last;
 	}
     }
-
-    $min;
+    $top;
 }
+
+*extract_minimum = \&extract_top;
 
 # absorb($h,$h2)           usually $h->absorb($h2)
 #	all of the values in $h2 are inserted into $h instead, $h2 is left

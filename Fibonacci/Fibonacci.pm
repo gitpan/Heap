@@ -12,7 +12,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -82,13 +82,13 @@ sub heapdump {
     my $h;
 
     while( $h = shift ) {
-	my $min = $$h or last;
-	my $el = $min;
+	my $top = $$h or last;
+	my $el = $top;
 
 	do {
 	    hdump $el, sprintf( "%02d: ", $el->{degree}), '    ';
 	    $el = $el->{right};
-	} until $el == $min;
+	} until $el == $top;
 	print "\n";
     }
 }
@@ -175,12 +175,14 @@ sub add {
     }
 }
 
-sub minimum {
+sub top {
     my $h = shift;
     $$h && $$h->{val};
 }
 
-sub extract_minimum {
+*minimum = \&top;
+
+sub extract_top {
     my $h = shift;
     my $el = $$h or return undef;
     my $ltop = $el->{left};
@@ -219,12 +221,14 @@ sub extract_minimum {
 
     # extract the actual value and return that, $el is no longer used
     # but break all of its links so that it won't be pointed to...
-    my $min = $el->{val};
-    $min->heap(undef);
+    my $top = $el->{val};
+    $top->heap(undef);
     $el->{left} = $el->{right} = $el->{p} = $el->{child} = $el->{val} =
 	undef;
-    $min;
+    $top;
 }
+
+*extract_minimum = \&extract_top;
 
 sub absorb {
     my $h = shift;
@@ -249,7 +253,7 @@ sub absorb {
     link_to_left_of $el->{left}, $el2;
     link_to_left_of $el2l, $el;
 
-    # change the minimum link if needed
+    # change the top link if needed
     $$h = $el2 if $el->{val}->cmp( $el2->{val} ) > 0;
 
     # clean out $h2
@@ -283,7 +287,7 @@ sub decrease_key {
 
 
 # to delete an item, we bubble it to the top of its heap (as if its key
-# had been decreased to -infinity), and then remove it (as in extract_minimum)
+# had been decreased to -infinity), and then remove it (as in extract_top)
 sub delete {
     my $h = shift;
     my $v = shift;
@@ -297,7 +301,7 @@ sub delete {
     # $el is in the top list now, make it look like the smallest and
     # remove it
     $$h = $el;
-    $h->extract_minimum;
+    $h->extract_top;
 }
 
 

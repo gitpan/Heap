@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: NumRElem (to allocate a new Heap::Elem::NumRev value)
 @EXPORT_OK = qw( NumRElem );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -75,7 +75,7 @@ Heap::Elem::NumRev - Perl extension for Reversed Numeric Heap Elements
       $heap->add( $elem );
   }
 
-  while( defined( $elem = $heap->extract_minimum ) ) {
+  while( defined( $elem = $heap->extract_top ) ) {
       print "Largest is ", $elem->val, "\n";
   }
 

@@ -44,9 +44,9 @@ while (1) {
     my $scratch;
     $not = 'not ';
     if( $op eq 'test_empty' ) {
-	defined($heap->minimum) or $not = '';
+	defined($heap->top) or $not = '';
     } elsif( $op eq 'test' ) {
-	defined($scratch = $heap->minimum) and $scratch->val == $step->[1] and $not = '';
+	defined($scratch = $heap->top) and $scratch->val == $step->[1] and $not = '';
     } elsif( $op eq 'add' ) {
 	my( $base, $limit, $incr ) = (@$step)[1..3];
 	defined $incr or $incr = 1;
@@ -62,7 +62,7 @@ while (1) {
 	defined $incr or $incr = -1;
 	$not = '';
 	while($count--) {
-	    my $elem = $heap->extract_minimum;
+	    my $elem = $heap->extract_top;
 	    defined($elem) && $elem->val == $base
 		or $not = 'not ';
 	    $base += $incr;

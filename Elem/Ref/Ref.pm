@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: RefElem (to allocate a new Heap::Elem::Ref value)
 @EXPORT_OK = qw( RefElem );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -75,7 +75,7 @@ Heap::Elem::Ref - Perl extension for Object Reference Heap Elements
       $heap->add( $elem );
   }
 
-  while( defined( $elem = $heap->extract_minimum ) ) {
+  while( defined( $elem = $heap->extract_top ) ) {
       # assume that myObject object have a method I<printable>
       print "Smallest is ", $elem->val->printable, "\n";
   }

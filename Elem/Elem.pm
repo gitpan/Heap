@@ -13,7 +13,7 @@ require AutoLoader;
 
 @EXPORT = ( );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -99,13 +99,13 @@ into an O(n) one.)
 =item $elem1->cmp($elem2)
 
 A routine to compare two elements.  It must return a negative
-value if this element is less than I<$elem2>, 0 if they are
-equal, or a positive value if this element is greater than
-I<$elem2>.  Just as with sort, you can negate the meaning to
-reverse the order - causing the heap to always return the
-largest element instead of the smallest.  (That does make the
-Heap method names I<minimum>, I<extract_minimum>, and
-I<decrease_key> counter-intuitive, though.)
+value if this element should go higher on the heap than I<$elem2>,
+0 if they are equal, or a positive value if this element should
+go lower on the heap than I<$elem2>.  Just as with sort, the
+Perl operators <=> and cmp cause the smaller value to be returned
+first; similarly you can negate the meaning to reverse the order
+- causing the heap to always return the largest element instead
+of the smallest.
 
 =back
 

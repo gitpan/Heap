@@ -46,9 +46,9 @@ AR_STATIC_ARGS = cr
 NAME = Heap::Fibonacci
 DISTNAME = Heap-Fibonacci
 NAME_SYM = Heap_Fibonacci
-VERSION = 0.60
-VERSION_SYM = 0_60
-XS_VERSION = 0.60
+VERSION = 0.70
+VERSION_SYM = 0_70
+XS_VERSION = 0.70
 INST_BIN = ../blib/bin
 INST_EXE = ../blib/script
 INST_LIB = ../blib/lib
@@ -450,7 +450,7 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd:
-	@$(PERL) -e "print qq{<SOFTPKG NAME=\"Heap-Fibonacci\" VERSION=\"0,60,0,0\">\n}. qq{\t<TITLE>Heap-Fibonacci</TITLE>\n}. qq{\t<ABSTRACT></ABSTRACT>\n}. qq{\t<AUTHOR></AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<ARCHITECTURE NAME=\"i586-linux\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > Heap-Fibonacci.ppd
+	@$(PERL) -e "print qq{<SOFTPKG NAME=\"Heap-Fibonacci\" VERSION=\"0,70,0,0\">\n}. qq{\t<TITLE>Heap-Fibonacci</TITLE>\n}. qq{\t<ABSTRACT></ABSTRACT>\n}. qq{\t<AUTHOR></AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<ARCHITECTURE NAME=\"i586-linux\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > Heap-Fibonacci.ppd
 
 # --- MakeMaker pm_to_blib section:
 

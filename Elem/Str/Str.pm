@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: StrElem (to allocate a new Heap::Elem::Str value)
 @EXPORT_OK = qw( StrElem );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -74,7 +74,7 @@ Heap::Elem::Str - Perl extension for String Heap Elements
       $heap->add( $elem );
   }
 
-  while( defined( $elem = $heap->extract_minimum ) ) {
+  while( defined( $elem = $heap->extract_top ) ) {
       print "Smallest is ", $elem->val, "\n";
   }
 

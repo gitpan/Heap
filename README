@@ -31,7 +31,7 @@ method that will either store or retrieve a scalar value so that the
 heap routines can map an element reference into its position within
 the heap.
 
-This is version 0.60 - it was used for the graph routines in the book
+This is version 0.70 - it was used for the graph routines in the book
 "Mastering Algorithms with Perl", and there has been some feedback
 from users, which indicates that it is not too rough around the edges.
 

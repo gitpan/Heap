@@ -15,7 +15,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -92,7 +92,7 @@ invoked when the heap reference goes out of scope.
 
 Add an element to the heap.
 
-=item $elem = $heap->minimum
+=item $elem = $heap->top
 
 Return the top element on the heap.  It is B<not> removed from
 the heap but will remain at the top.  It will be the smallest
@@ -100,10 +100,21 @@ element on the heap (unless a reversed cmp function is being
 used, in which case it will be the largest).  Returns I<undef>
 if the heap is empty.
 
-=item $elem = $heap->extract_minimum
+This method used to be called "minimum" instead of "top".  The
+old name is still supported but is deprecated.  (It was confusing
+to use the method "minimum" to get the maximum value on the heap
+when a reversed cmp function was used for ordering elements.)
+
+=item $elem = $heap->extract_top
 
 Delete the top element from the heap and return it.  Returns
 I<undef> if the heap was empty.
+
+This method used to be called "extract_minimum" instead of
+"extract_top".  The old name is still supported but is deprecated.
+(It was confusing to use the method "extract_minimum" to get the
+maximum value on the heap when a reversed cmp function was used
+for ordering elements.)
 
 =item $heap1->absorb($heap2)
 

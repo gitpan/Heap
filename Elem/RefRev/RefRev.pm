@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: RefRElem (to allocate a new Heap::Elem::RefRev value)
 @EXPORT_OK = qw( RefRElem );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -75,7 +75,7 @@ Heap::Elem::RefRev - Perl extension for reversed Object Reverence Heap Elements
       $heap->add( $elem );
   }
 
-  while( defined( $elem = $heap->extract_minimum ) ) {
+  while( defined( $elem = $heap->extract_top ) ) {
       # assume that myObject object have a method I<printable>
       print "Largest is ", $elem->val->printable, "\n";
   }

@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: NumElem (to allocate a new Heap::Elem::Num value)
 @EXPORT_OK = qw( NumElem );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -74,7 +74,7 @@ Heap::Elem::Num - Perl extension for Numeric Heap Elements
       $heap->add( $elem );
   }
 
-  while( defined( $elem = $heap->extract_minimum ) ) {
+  while( defined( $elem = $heap->extract_top ) ) {
       print "Smallest is ", $elem->val, "\n";
   }
 

@@ -90,10 +90,10 @@ sub testaheap {
     # (i.e. 1, 101, 2, 102, ..., 100, 200)
     foreach my $index ( 1..$b2 ) {
 	my $el;
-	$el = $heap->minimum;
+	$el = $heap->top;
 	testit( $index == $el->val, ++$count );
 	testit( defined($el->heap), ++$count );
-	$el = $heap->extract_minimum;
+	$el = $heap->extract_top;
 	testit( $index == $el->val, ++$count );
 	testit( ! defined($el->heap), ++$count );
 	$el = $elems[$index+$b2];
@@ -105,10 +105,10 @@ sub testaheap {
     }
 
     # test 802..805 - heap should be empty, and return undef
-    testit( ! defined($heap->minimum), ++$count );
-    testit( ! defined($heap->extract_minimum), ++$count );
-    testit( ! defined($heap->minimum), ++$count );
-    testit( ! defined($heap->extract_minimum), ++$count );
+    testit( ! defined($heap->top), ++$count );
+    testit( ! defined($heap->extract_top), ++$count );
+    testit( ! defined($heap->top), ++$count );
+    testit( ! defined($heap->extract_top), ++$count );
 }
 
 $fibi && testaheap( Heap::Fibonacci->new );

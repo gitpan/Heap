@@ -12,7 +12,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.60';
+$VERSION = '0.70';
 
 
 # Preloaded methods go here.
@@ -157,29 +157,31 @@ sub add {
     $h->self_union_once;
 }
 
-sub minimum {
+sub top {
     my $h = shift;
     my $el = $$h or return undef;
-    my $min = $el->{val};
+    my $top = $el->{val};
     while( $el = $el->{sib} ) {
-	$min = $el->{val}
-	    if $min->cmp($el->{val}) > 0;
+	$top = $el->{val}
+	    if $top->cmp($el->{val}) > 0;
     }
-    $min;
+    $top;
 }
 
-sub extract_minimum {
+*minimum = \&top;
+
+sub extract_top {
     my $h = shift;
     my $mel = $$h or return undef;
-    my $min = $mel->{val};
+    my $top = $mel->{val};
     my $mpred = $h;
     my $el = $mel;
     my $pred = $h;
 
     # find the heap with the lowest value on it
     while( $pred = \$el->{sib}, $el = $$pred ) {
-	if( $min->cmp($el->{val}) > 0 ) {
-	    $min = $el->{val};
+	if( $top->cmp($el->{val}) > 0 ) {
+	    $top = $el->{val};
 	    $mel = $el;
 	    $mpred = $pred;
 	}
@@ -199,11 +201,13 @@ sub extract_minimum {
     $mel->{p} = $mel->{child} = $mel->{sib} = $mel->{val} = undef;
 
     # break the back link
-    $min->heap(undef);
+    $top->heap(undef);
 
     # and return the value
-    $min;
+    $top;
 }
+
+*extract_minimum = \&extract_top;
 
 sub absorb {
     my $h = shift;
@@ -259,7 +263,7 @@ sub decrease_key {
 }
 
 # to delete an item, we bubble it to the top of its heap (as if its key
-# had been decreased to -infinity), and then remove it (as in extract_minimum)
+# had been decreased to -infinity), and then remove it (as in extract_top)
 sub delete {
     my $h = shift;
     my $v = shift;

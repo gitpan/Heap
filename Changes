@@ -20,3 +20,9 @@ Revision history for Perl extension Heap.
 	    for solving bugs
 	- fixed bug in Heap::Binomial delete
 	- Heap::Fibonacci delete worked in tests
+
+0.70  Fri Dec  5 00:55:41 EST 2003
+	- finally got around to renaming minimum and
+	  extract_minimum methods to top and extract_top
+	  - prompted by Steve Lembark <lembark@wrkhors.com>
+	  - old names are still supported, but depracated
