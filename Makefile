@@ -1,10 +1,12 @@
 # This Makefile is for the Heap extension to perl.
 #
 # It was generated automatically by MakeMaker version
-# 5.4301 (Revision: 1.222) from the contents of
+# 5.45 (Revision: 1.222) from the contents of
 # Makefile.PL. Don't edit this file, edit Makefile.PL instead.
 #
 #	ANY CHANGES MADE HERE WILL BE LOST!
+#
+#   MakeMaker ARGV: ()
 #
 #   MakeMaker Parameters:
 
@@ -16,26 +18,27 @@
 
 # --- MakeMaker const_config section:
 
-# These definitions are from config.sh (via /usr/local/lib/perl5.005_02/lib/5.00502/aix/Config.pm)
+# These definitions are from config.sh (via /usr/lib/perl5/5.6.1/i586-linux/Config.pm)
 
 # They may have been overridden via Makefile.PL or on the command line
 AR = ar
 CC = cc
-CCCDLFLAGS =  
-CCDLFLAGS = -bE:perl.exp
+CCCDLFLAGS = -fpic
+CCDLFLAGS = -rdynamic
 DLEXT = so
-DLSRC = dl_aix.xs
-LD = ld
-LDDLFLAGS = -bhalt:4 -bM:SRE -bI:$(PERL_INC)/perl.exp -bE:$(BASEEXT).exp -b noentry -lc -L/usr/local/lib
+DLSRC = dl_dlopen.xs
+LD = cc
+LDDLFLAGS = -shared -L/usr/local/lib
 LDFLAGS =  -L/usr/local/lib
-LIBC = /lib/libc.a
+LIBC = 
 LIB_EXT = .a
 OBJ_EXT = .o
-OSNAME = aix
-OSVERS = 4.3.1.0
+OSNAME = linux
+OSVERS = 2.4.9
 RANLIB = :
-SO = a
+SO = so
 EXE_EXT = 
+FULL_AR = /usr/bin/ar
 
 
 # --- MakeMaker constants section:
@@ -43,41 +46,43 @@ AR_STATIC_ARGS = cr
 NAME = Heap
 DISTNAME = Heap
 NAME_SYM = Heap
-VERSION = 0.50
-VERSION_SYM = 0_50
-XS_VERSION = 0.50
+VERSION = 0.60
+VERSION_SYM = 0_60
+XS_VERSION = 0.60
 INST_BIN = blib/bin
 INST_EXE = blib/script
 INST_LIB = blib/lib
 INST_ARCHLIB = blib/arch
 INST_SCRIPT = blib/script
-PREFIX = /usr/local/lib/perl5.005_02
+PREFIX = /usr
 INSTALLDIRS = site
-INSTALLPRIVLIB = $(PREFIX)/lib/5.00502
-INSTALLARCHLIB = $(PREFIX)/lib/5.00502/aix
-INSTALLSITELIB = $(PREFIX)/lib/site_perl/5.005
-INSTALLSITEARCH = $(PREFIX)/lib/site_perl/5.005/aix
+INSTALLPRIVLIB = $(PREFIX)/lib/perl5/5.6.1
+INSTALLARCHLIB = $(PREFIX)/lib/perl5/5.6.1/i586-linux
+INSTALLSITELIB = $(PREFIX)/lib/perl5/site_perl/5.6.1
+INSTALLSITEARCH = $(PREFIX)/lib/perl5/site_perl/5.6.1/i586-linux
 INSTALLBIN = $(PREFIX)/bin
 INSTALLSCRIPT = $(PREFIX)/bin
-PERL_LIB = /usr/local/lib/perl5.005_02/lib/5.00502
-PERL_ARCHLIB = /usr/local/lib/perl5.005_02/lib/5.00502/aix
-SITELIBEXP = /usr/local/lib/perl5.005_02/lib/site_perl/5.005
-SITEARCHEXP = /usr/local/lib/perl5.005_02/lib/site_perl/5.005/aix
+PERL_LIB = /usr/lib/perl5/5.6.1
+PERL_ARCHLIB = /usr/lib/perl5/5.6.1/i586-linux
+SITELIBEXP = /usr/lib/perl5/site_perl/5.6.1
+SITEARCHEXP = /usr/lib/perl5/site_perl/5.6.1/i586-linux
 LIBPERL_A = libperl.a
 FIRST_MAKEFILE = Makefile
 MAKE_APERL_FILE = Makefile.aperl
 PERLMAINCC = $(CC)
-PERL_INC = /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE
+PERL_INC = /usr/lib/perl5/5.6.1/i586-linux/CORE
 PERL = /usr/bin/perl
 FULLPERL = /usr/bin/perl
+FULL_AR = /usr/bin/ar
 
 VERSION_MACRO = VERSION
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
+PERL_MALLOC_DEF = -DPERL_EXTMALLOC_DEF -Dmalloc=Perl_malloc -Dfree=Perl_mfree -Drealloc=Perl_realloc -Dcalloc=Perl_calloc
 
-MAKEMAKER = /usr/local/lib/perl5.005_02/lib/5.00502/ExtUtils/MakeMaker.pm
-MM_VERSION = 5.4301
+MAKEMAKER = /usr/lib/perl5/5.6.1/ExtUtils/MakeMaker.pm
+MM_VERSION = 5.45
 
 # FULLEXT = Pathname for extension directory (eg Foo/Bar/Oracle).
 # BASEEXT = Basename part of FULLEXT. May be just equal FULLEXT. (eg Oracle)
@@ -97,14 +102,17 @@ XS_FILES=
 C_FILES = 
 O_FILES = 
 H_FILES = 
+HTMLLIBPODS    = 
+HTMLSCRIPTPODS = 
 MAN1PODS = 
 MAN3PODS = Heap.pm
+HTMLEXT = html
 INST_MAN1DIR = blib/man1
-INSTALLMAN1DIR = $(PREFIX)/man/man1
+INSTALLMAN1DIR = $(PREFIX)/share/man/man1
 MAN1EXT = 1
 INST_MAN3DIR = blib/man3
-INSTALLMAN3DIR = $(PREFIX)/man/man3
-MAN3EXT = 3
+INSTALLMAN3DIR = $(PREFIX)/share/man/man3
+MAN3EXT = 3pm
 PERM_RW = 644
 PERM_RWX = 755
 
@@ -139,6 +147,8 @@ EXPORT_LIST =
 
 PERL_ARCHIVE = 
 
+PERL_ARCHIVE_AFTER = 
+
 TO_INST_PM = Heap.pm
 
 PM_TO_BLIB = Heap.pm \
@@ -159,7 +169,7 @@ AUTOSPLITFILE = $(PERL) "-I$(PERL_ARCHLIB)" "-I$(PERL_LIB)" -e 'use AutoSplit;au
 SHELL = /bin/sh
 CHMOD = chmod
 CP = cp
-LD = ld
+LD = cc
 MV = mv
 NOOP = $(SHELL) -c true
 RM_F = rm -f
@@ -187,13 +197,13 @@ WARN_IF_OLD_PACKLIST = $(PERL) -we 'exit unless -f $$ARGV[0];' \
 -e 'print "Please make sure the two installations are not conflicting\n";'
 
 UNINST=0
-VERBINST=1
+VERBINST=0
 
 MOD_INSTALL = $(PERL) -I$(INST_LIB) -I$(PERL_LIB) -MExtUtils::Install \
 -e "install({@ARGV},'$(VERBINST)',0,'$(UNINST)');"
 
 DOC_INSTALL = $(PERL) -e '$$\="\n\n";' \
--e 'print "=head2 ", scalar(localtime), ": C<", shift, ">", " L<", shift, ">";' \
+-e 'print "=head2 ", scalar(localtime), ": C<", shift, ">", " L<", $$arg=shift, "|", $$arg, ">";' \
 -e 'print "=over 4";' \
 -e 'while (defined($$key = shift) and defined($$val = shift)){print "=item *";print "C<$$key: $$val>";}' \
 -e 'print "=back";'
@@ -263,7 +273,7 @@ PASTHRU = LIB="$(LIB)"\
 
 #all ::	config $(INST_PM) subdirs linkext manifypods
 
-all :: pure_all manifypods
+all :: pure_all htmlifypods manifypods
 	@$(NOOP)
 
 pure_all :: config pm_to_blib subdirs linkext
@@ -281,25 +291,21 @@ config :: $(INST_ARCHAUTODIR)/.exists
 config :: $(INST_AUTODIR)/.exists
 	@$(NOOP)
 
-config :: Version_check
-	@$(NOOP)
-
-
-$(INST_AUTODIR)/.exists :: /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE/perl.h
+$(INST_AUTODIR)/.exists :: /usr/lib/perl5/5.6.1/i586-linux/CORE/perl.h
 	@$(MKPATH) $(INST_AUTODIR)
-	@$(EQUALIZE_TIMESTAMP) /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE/perl.h $(INST_AUTODIR)/.exists
+	@$(EQUALIZE_TIMESTAMP) /usr/lib/perl5/5.6.1/i586-linux/CORE/perl.h $(INST_AUTODIR)/.exists
 
 	-@$(CHMOD) $(PERM_RWX) $(INST_AUTODIR)
 
-$(INST_LIBDIR)/.exists :: /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE/perl.h
+$(INST_LIBDIR)/.exists :: /usr/lib/perl5/5.6.1/i586-linux/CORE/perl.h
 	@$(MKPATH) $(INST_LIBDIR)
-	@$(EQUALIZE_TIMESTAMP) /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE/perl.h $(INST_LIBDIR)/.exists
+	@$(EQUALIZE_TIMESTAMP) /usr/lib/perl5/5.6.1/i586-linux/CORE/perl.h $(INST_LIBDIR)/.exists
 
 	-@$(CHMOD) $(PERM_RWX) $(INST_LIBDIR)
 
-$(INST_ARCHAUTODIR)/.exists :: /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE/perl.h
+$(INST_ARCHAUTODIR)/.exists :: /usr/lib/perl5/5.6.1/i586-linux/CORE/perl.h
 	@$(MKPATH) $(INST_ARCHAUTODIR)
-	@$(EQUALIZE_TIMESTAMP) /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE/perl.h $(INST_ARCHAUTODIR)/.exists
+	@$(EQUALIZE_TIMESTAMP) /usr/lib/perl5/5.6.1/i586-linux/CORE/perl.h $(INST_ARCHAUTODIR)/.exists
 
 	-@$(CHMOD) $(PERM_RWX) $(INST_ARCHAUTODIR)
 
@@ -307,9 +313,9 @@ config :: $(INST_MAN3DIR)/.exists
 	@$(NOOP)
 
 
-$(INST_MAN3DIR)/.exists :: /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE/perl.h
+$(INST_MAN3DIR)/.exists :: /usr/lib/perl5/5.6.1/i586-linux/CORE/perl.h
 	@$(MKPATH) $(INST_MAN3DIR)
-	@$(EQUALIZE_TIMESTAMP) /usr/local/lib/perl5.005_02/lib/5.00502/aix/CORE/perl.h $(INST_MAN3DIR)/.exists
+	@$(EQUALIZE_TIMESTAMP) /usr/lib/perl5/5.6.1/i586-linux/CORE/perl.h $(INST_MAN3DIR)/.exists
 
 	-@$(CHMOD) $(PERM_RWX) $(INST_MAN3DIR)
 
@@ -360,8 +366,14 @@ static :: Makefile $(INST_STATIC)
 # --- MakeMaker static_lib section:
 
 
+# --- MakeMaker htmlifypods section:
+
+htmlifypods : pure_all
+	@$(NOOP)
+
+
 # --- MakeMaker manifypods section:
-POD2MAN_EXE = /usr/local/lib/perl5.005_02/bin/pod2man
+POD2MAN_EXE = /usr/bin/pod2man
 POD2MAN = $(PERL) -we '%m=@ARGV;for (keys %m){' \
 -e 'next if -e $$m{$$_} && -M $$m{$$_} < -M $$_ && -M $$m{$$_} < -M "Makefile";' \
 -e 'print "Manifying $$m{$$_}\n";' \
@@ -385,20 +397,16 @@ manifypods : pure_all Heap.pm
 # have automatically been given entries for each subdir.
 
 
-
 subdirs ::
 	@cd Binary && $(MAKE) all $(PASTHRU)
-
 
 
 subdirs ::
 	@cd Binomial && $(MAKE) all $(PASTHRU)
 
 
-
 subdirs ::
 	@cd Elem && $(MAKE) all $(PASTHRU)
-
 
 
 subdirs ::
@@ -416,7 +424,7 @@ clean ::
 	-cd Binomial && $(TEST_F) Makefile && $(MAKE) clean
 	-cd Elem && $(TEST_F) Makefile && $(MAKE) clean
 	-cd Fibonacci && $(TEST_F) Makefile && $(MAKE) clean
-	-rm -rf ./blib $(MAKE_APERL_FILE) $(INST_ARCHAUTODIR)/extralibs.all perlmain.c mon.out core so_locations pm_to_blib *~ */*~ */*/*~ *$(OBJ_EXT) *$(LIB_EXT) perl.exe $(BOOTSTRAP) $(BASEEXT).bso $(BASEEXT).def $(BASEEXT).exp
+	-rm -rf ./blib $(MAKE_APERL_FILE) $(INST_ARCHAUTODIR)/extralibs.all perlmain.c mon.out core core.*perl.*.? *perl.core so_locations pm_to_blib *$(OBJ_EXT) *$(LIB_EXT) perl.exe $(BOOTSTRAP) $(BASEEXT).bso $(BASEEXT).def $(BASEEXT).exp
 	-mv Makefile Makefile.old $(DEV_NULL)
 
 
@@ -433,7 +441,7 @@ realclean purge ::  clean
 	-cd Fibonacci && $(TEST_F) Makefile.old && $(MAKE) -f Makefile.old realclean
 	-cd Fibonacci && $(TEST_F) Makefile && $(MAKE)  realclean
 	rm -rf $(INST_AUTODIR) $(INST_ARCHAUTODIR)
-	rm -f $(INST_LIBDIR)/Heap.pm
+	rm -f  $(INST_LIBDIR)/Heap.pm
 	rm -rf Makefile Makefile.old
 
 
@@ -452,6 +460,9 @@ skipcheck :
 manifest :
 	$(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) -MExtUtils::Manifest=mkmanifest \
 		-e mkmanifest
+
+veryclean : realclean
+	$(RM_F) *~ *.orig */*~ */*.orig
 
 
 # --- MakeMaker dist_core section:
@@ -545,6 +556,8 @@ pure_perl_install ::
 		$(INST_ARCHLIB) $(INSTALLARCHLIB) \
 		$(INST_BIN) $(INSTALLBIN) \
 		$(INST_SCRIPT) $(INSTALLSCRIPT) \
+		$(INST_HTMLLIBDIR) $(INSTALLHTMLPRIVLIBDIR) \
+		$(INST_HTMLSCRIPTDIR) $(INSTALLHTMLSCRIPTDIR) \
 		$(INST_MAN1DIR) $(INSTALLMAN1DIR) \
 		$(INST_MAN3DIR) $(INSTALLMAN3DIR)
 	@$(WARN_IF_OLD_PACKLIST) \
@@ -559,12 +572,15 @@ pure_site_install ::
 		$(INST_ARCHLIB) $(INSTALLSITEARCH) \
 		$(INST_BIN) $(INSTALLBIN) \
 		$(INST_SCRIPT) $(INSTALLSCRIPT) \
+		$(INST_HTMLLIBDIR) $(INSTALLHTMLSITELIBDIR) \
+		$(INST_HTMLSCRIPTDIR) $(INSTALLHTMLSCRIPTDIR) \
 		$(INST_MAN1DIR) $(INSTALLMAN1DIR) \
 		$(INST_MAN3DIR) $(INSTALLMAN3DIR)
 	@$(WARN_IF_OLD_PACKLIST) \
 		$(PERL_ARCHLIB)/auto/$(FULLEXT)
 
 doc_perl_install ::
+	-@$(MKPATH) $(INSTALLARCHLIB)
 	-@$(DOC_INSTALL) \
 		"Module" "$(NAME)" \
 		"installed into" "$(INSTALLPRIVLIB)" \
@@ -574,6 +590,7 @@ doc_perl_install ::
 		>> $(INSTALLARCHLIB)/perllocal.pod
 
 doc_site_install ::
+	-@$(MKPATH) $(INSTALLARCHLIB)
 	-@$(DOC_INSTALL) \
 		"Module" "$(NAME)" \
 		"installed into" "$(INSTALLSITELIB)" \
@@ -670,14 +687,14 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd:
-	@$(PERL) -e "print qq{<SOFTPKG NAME=\"Heap\" VERSION=\"0,50,0,0\">\n}. qq{\t<TITLE>Heap</TITLE>\n}. qq{\t<ABSTRACT></ABSTRACT>\n}. qq{\t<AUTHOR></AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > Heap.ppd
+	@$(PERL) -e "print qq{<SOFTPKG NAME=\"Heap\" VERSION=\"0,60,0,0\">\n}. qq{\t<TITLE>Heap</TITLE>\n}. qq{\t<ABSTRACT></ABSTRACT>\n}. qq{\t<AUTHOR></AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<ARCHITECTURE NAME=\"i586-linux\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > Heap.ppd
 
 # --- MakeMaker pm_to_blib section:
 
 pm_to_blib: $(TO_INST_PM)
 	@$(PERL) "-I$(INST_ARCHLIB)" "-I$(INST_LIB)" \
 	"-I$(PERL_ARCHLIB)" "-I$(PERL_LIB)" -MExtUtils::Install \
-        -e "pm_to_blib({qw{$(PM_TO_BLIB)}},'$(INST_LIB)/auto')"
+        -e "pm_to_blib({qw{$(PM_TO_BLIB)}},'$(INST_LIB)/auto','$(PM_FILTER)')"
 	@$(TOUCH) $@
 
 

@@ -14,7 +14,7 @@ require AutoLoader;
 # Available for export: RefRElem (to allocate a new Heap::Elem::RefRev value)
 @EXPORT_OK = qw( RefRElem );
 
-$VERSION = '0.01';
+$VERSION = '0.60';
 
 
 # Preloaded methods go here.
@@ -97,7 +97,13 @@ The details of using a Heap interface are described in L<Heap>.
 
 =head1 AUTHOR
 
-John Macdonald, jmm@elegant.com
+John Macdonald, jmm@perlwolf.com
+
+=head1 COPYRIGHT
+
+Copyright 1998-2003, O'Reilly & Associates.
+
+This code is distributed under the same copyright terms as perl itself.
 
 =head1 SEE ALSO
 

@@ -12,7 +12,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.01';
+$VERSION = '0.60';
 
 
 # Preloaded methods go here.
@@ -220,6 +220,7 @@ sub extract_minimum {
     # extract the actual value and return that, $el is no longer used
     # but break all of its links so that it won't be pointed to...
     my $min = $el->{val};
+    $min->heap(undef);
     $el->{left} = $el->{right} = $el->{p} = $el->{child} = $el->{val} =
 	undef;
     $min;
@@ -328,6 +329,7 @@ sub elem_DESTROY {
 	$ch = $el->{child} and elem_DESTROY $ch;
 	$next = $el->{right};
 
+	$el->{val}->heap(undef);
 	$el->{child} = $el->{right} = $el->{left} = $el->{p} = $el->{val}
 	    = undef;
 	$el = $next;
@@ -460,13 +462,13 @@ See L<Heap> for details on using this module.
 
 =head1 AUTHOR
 
-John Macdonald, jmm@elegant.com
+John Macdonald, jmm@perlwolf.com
 
 =head1 COPYRIGHT
 
-Copyright 1998, O'Reilly & Associates.
+Copyright 1998-2003, O'Reilly & Associates.
 
-This code is distributed under the sme copyright as perl itself.
+This code is distributed under the same copyright terms as perl itself.
 
 =head1 SEE ALSO
 

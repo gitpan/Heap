@@ -12,7 +12,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.01';
+$VERSION = '0.60';
 
 
 # Preloaded methods go here.
@@ -209,7 +209,7 @@ sub delete {
 	pop @$h;
     } else {
 	my $v2 = pop @$h;
-	if( $v->cmp($v2) < 0 ) {
+	if( $v2->cmp($v) < 0 ) {
 	    heapup $h, $i, $v2;
 	} else {
 	    heapdown $h, $i, $v2;
@@ -306,13 +306,13 @@ See L<Heap> for details on using this module.
 
 =head1 AUTHOR
 
-John Macdonald, jmm@elegant.com
+John Macdonald, jmm@perlwolf.com
 
 =head1 COPYRIGHT
 
-Copyright 1998, O'Reilly & Associates.
+Copyright 1998-2003, O'Reilly & Associates.
 
-This code is distributed under the sme copyright as perl itself.
+This code is distributed under the same copyright terms as perl itself.
 
 =head1 SEE ALSO
 

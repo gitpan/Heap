@@ -66,3 +66,4 @@ Makefile
 Makefile.PL
 README
 t/test.t
+t/test_leaks.t

@@ -12,7 +12,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.01';
+$VERSION = '0.60';
 
 
 # Preloaded methods go here.
@@ -198,6 +198,9 @@ sub extract_minimum {
     # memory loops when we forget about the pointer to $mel
     $mel->{p} = $mel->{child} = $mel->{sib} = $mel->{val} = undef;
 
+    # break the back link
+    $min->heap(undef);
+
     # and return the value
     $min;
 }
@@ -271,7 +274,7 @@ sub delete {
 
     # find it on the main list, to remove it and split up the children
     my $n;
-    for( $p = $h; $n = $$p && $n != $el; $p = \$n->{sib} ) {
+    for( $p = $h; ($n = $$p) && $n != $el; $p = \$n->{sib} ) {
 	;
     }
 
@@ -280,6 +283,9 @@ sub delete {
 
     # put any children back onto the main list
     $h->absorb_children($el);
+
+    # remove the link to $el
+    $v->heap(undef);
 
     return $v;
 }
@@ -310,6 +316,7 @@ sub elem_DESTROY {
 	$ch = $el->{child} and elem_DESTROY $ch;
 	$next = $el->{sib};
 
+	$el->{val}->heap(undef);
 	$el->{child} = $el->{sib} = $el->{p} = $el->{val} = undef;
 	$el = $next;
     }
@@ -403,7 +410,7 @@ sub absorb_children {
     my $h = shift;
     my $el = shift;
 
-    my $h2 = new;
+    my $h2 = $h->new;
     my $child = $el->{child};
     while(  $child ) {
 	my $sib = $child->{sib};
@@ -443,13 +450,13 @@ See L<Heap> for details on using this module.
 
 =head1 AUTHOR
 
-John Macdonald, jmm@elegant.com
+John Macdonald, jmm@perlwolf.com
 
 =head1 COPYRIGHT
 
-Copyright 1998, O'Reilly & Associates.
+Copyright 1998-2003, O'Reilly & Associates.
 
-This code is distributed under the sme copyright as perl itself.
+This code is distributed under the same copyright terms as perl itself.
 
 =head1 SEE ALSO
 

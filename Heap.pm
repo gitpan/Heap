@@ -15,7 +15,7 @@ require AutoLoader;
 # No names available for export.
 @EXPORT = ( );
 
-$VERSION = '0.50';
+$VERSION = '0.60';
 
 
 # Preloaded methods go here.
@@ -133,14 +133,13 @@ the top or not).
 
 =head1 AUTHOR
 
-John Macdonald, jmm@elegant.com
+John Macdonald, jmm@perlwolf.com
 
 =head1 COPYRIGHT
 
-Copyright 1998, O'Reilly & Associates.
+Copyright 1998-2003, O'Reilly & Associates.
 
-This code is distributed under the same copyright terms as perl
-itself.
+This code is distributed under the same copyright terms as perl itself.
 
 =head1 SEE ALSO
 

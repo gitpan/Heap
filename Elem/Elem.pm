@@ -13,7 +13,7 @@ require AutoLoader;
 
 @EXPORT = ( );
 
-$VERSION = '0.01';
+$VERSION = '0.60';
 
 
 # Preloaded methods go here.
@@ -25,7 +25,7 @@ sub new {
     my $self = shift;
     my $class = ref($self) || $self;
 
-    return bless { @_ }, $class;
+    return bless { heap=>undef, @_ }, $class;
 }
 
 sub heap {
@@ -84,6 +84,18 @@ into its internal structure.  This is needed to support the
 Heap methods that affect elements that are not are the top
 of the heap - I<decrease_key> and I<delete>.
 
+The Heap processing routines will ensure that this value is
+undef when this elem is removed from a heap, and is not undef
+after it is inserted into a heap.  This means that you can
+check whether an element is currently contained within a heap
+or not.  (It cannot be used to determine which heap an element
+is contained in, if you have multiple heaps.  Keeping that
+information accurate would make the operation of merging two
+heaps into a single one take longer - it would have to traverse
+all of the elements in the merged heap to update them; for
+Binomial and Fibonacci heaps that would turn an O(1) operation
+into an O(n) one.)
+
 =item $elem1->cmp($elem2)
 
 A routine to compare two elements.  It must return a negative
@@ -101,7 +113,7 @@ I<decrease_key> counter-intuitive, though.)
 
 This class can be inherited to provide an oject with the
 ability to be heaped.  If the object is implemented as
-a hash, and if it can deal with a kay of I<heap>, leaving
+a hash, and if it can deal with a key of I<heap>, leaving
 it unchanged for use by the heap routines, then the following
 implemetation will work.
 
@@ -131,7 +143,13 @@ implemetation will work.
 
 =head1 AUTHOR
 
-John Macdonald, jmm@elegant.com
+John Macdonald, jmm@perlwolf.com
+
+=head1 COPYRIGHT
+
+Copyright 1998-2003, O'Reilly & Associates.
+
+This code is distributed under the same copyright terms as perl itself.
 
 =head1 SEE ALSO
 

@@ -31,13 +31,15 @@ method that will either store or retrieve a scalar value so that the
 heap routines can map an element reference into its position within
 the heap.
 
-This is version 0.01 - obviously it is still rough around the edges.
+This is version 0.60 - it was used for the graph routines in the book
+"Mastering Algorithms with Perl", and there has been some feedback
+from users, which indicates that it is not too rough around the edges.
 
 Comments to:
 
-    John Macdonald <jmm@elegant.com>
+    John Macdonald <jmm@perlwolf.com>
 
 Copyright:
 
-    This code is copyright 1998 O'Reilly & Associates.  It is
+    This code is copyright 1998-2003 O'Reilly & Associates.  It is
     available on the same terms as perl itself.
