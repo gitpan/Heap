@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 
 BEGIN {
+    chdir 't' if -d 't';
+    use lib '../lib';
     $| = 1;
     print "1..13\n";
 }
